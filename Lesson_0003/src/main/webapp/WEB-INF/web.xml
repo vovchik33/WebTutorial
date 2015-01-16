@@ -4,4 +4,12 @@
 
 <web-app>
   <display-name>Archetype Created Web Application</display-name>
+    <servlet>
+        <servlet-name>UserFormServlet</servlet-name>
+        <servlet-class>edu.tutorial.web.UserFormServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>UserFormServlet</servlet-name>
+        <url-pattern>/UserFormServlet</url-pattern>
+    </servlet-mapping>
 </web-app>

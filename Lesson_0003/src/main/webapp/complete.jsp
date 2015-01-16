@@ -1,3 +1,4 @@
+<%@ page import="edu.tutorial.web.bean.UserData" %>
 <%--
   Created by IntelliJ IDEA.
   User: vladimirkr
@@ -8,9 +9,14 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title></title>
+    <title>Complete</title>
 </head>
 <body>
-
+  <%
+    UserData userData = (UserData) request.getAttribute("userData");
+  %>
+  <h1>Hello, <% out.println(userData.toString()); %></h1>
+  <a href="index.jsp">Back to Main</a>
+  <a href="form.jsp">Another one</a>
 </body>
 </html>
