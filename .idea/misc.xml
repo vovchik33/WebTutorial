@@ -73,6 +73,7 @@
     <file type="web" url="file://$PROJECT_DIR$/Lesson_0001" />
     <file type="web" url="file://$PROJECT_DIR$/Lesson_0002" />
     <file type="web" url="file://$PROJECT_DIR$/Lesson_0003" />
+    <file type="web" url="file://$PROJECT_DIR$/Lesson_0004" />
   </component>
   <component name="IdProvider" IDEtalkID="EDD565B9729F85CF423C2981EC55BECB" />
   <component name="MavenProjectsManager">
@@ -81,6 +82,7 @@
         <option value="$PROJECT_DIR$/Lesson_0001/pom.xml" />
         <option value="$PROJECT_DIR$/Lesson_0002/pom.xml" />
         <option value="$PROJECT_DIR$/Lesson_0003/pom.xml" />
+        <option value="$PROJECT_DIR$/Lesson_0004/pom.xml" />
       </list>
     </option>
   </component>

@@ -25,6 +25,7 @@
         <module name="Lesson_0001" />
         <module name="Lesson_0002" />
         <module name="Lesson_0003" />
+        <module name="Lesson_0004" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel target="1.7" />
