@@ -12,9 +12,15 @@ import java.util.List;
  * Created by vladimirkr on 1/14/2015.
  */
 public class DBConnector {
-    private static final String DB_URL = "jdbc:sqlite:C:\\Users\\vladimirkr\\IdeaProjects\\WebTutorial\\Lesson_0003\\Lesson_0003.db";
+    //private static final String DB_URL = "jdbc:sqlite:C:\\Users\\vladimirkr\\IdeaProjects\\WebTutorial\\Lesson_0003\\Lesson_0003.db";
+    private static final String DB_URL = "jdbc:sqlite:C:\\Users\\unclejoe33\\IdeaProjects\\WebTutorial\\Lesson_0003\\Lesson_0003.db";
     private Driver driver;
     private Connection connection;
+    private PreparedStatement stGetUsers;
+    private PreparedStatement stAddUser;
+
+    String reqGetUsers = "select * from user";
+    String reqAddUser = "insert into user (first_name, second_name, username, password, email, sex_id, profession_id, language_id) values (?,?,?,?,?,?,?,?)";
 
     private Logger logger;
 
@@ -26,6 +32,8 @@ public class DBConnector {
         try {
             driver = (Driver) Class.forName("org.sqlite.JDBC").newInstance();
             connection = DriverManager.getConnection(DB_URL);
+            stGetUsers = connection.prepareStatement(reqGetUsers);
+            stAddUser = connection.prepareStatement(reqAddUser);
         } catch (SQLException e) {
             e.printStackTrace();
         } catch (ClassNotFoundException e) {
@@ -40,11 +48,9 @@ public class DBConnector {
 
     public List<UserData> getUsers() {
         logger.info("Users data from DB");
-        String request = "select * from user";
         List<UserData> resultList=new ArrayList();
         try {
-            Statement statement = connection.createStatement();
-            ResultSet resultSet = statement.executeQuery(request);
+            ResultSet resultSet = stGetUsers.executeQuery();
             while (resultSet.next()) {
                 UserData userData = new UserData.Builder()
                         .setId(Integer.parseInt(resultSet.getString("id")))
@@ -66,7 +72,17 @@ public class DBConnector {
         }
         return resultList;
     }
-    public void addUser(UserData userData) {
-
+    public void addUser(UserData userData) throws SQLException {
+        logger.info("Users data from DB");
+        //first_name, second_name, username, password, email, sex_id, profession_id, language_id
+        stAddUser.setString(1, userData.getFirstName());
+        stAddUser.setString(2, userData.getSecondName());
+        stAddUser.setString(3, userData.getUsername());
+        stAddUser.setString(4, userData.getPassword());
+        stAddUser.setString(5, userData.getEmail());
+        stAddUser.setInt(6, userData.getSexId());
+        stAddUser.setInt(7, userData.getProfessionId());
+        stAddUser.setInt(8, userData.getLanguageId());
+        stAddUser.executeUpdate();
     }
 }

@@ -1,7 +1,6 @@
-<%@ page import="java.util.List" %>
-<%@ page import="edu.tutorial.web.bean.UserData" %>
-<%@ page import="java.util.ArrayList" %>
 <%@ page import="edu.tutorial.web.db.DBConnector" %>
+<%@ page import="edu.tutorial.web.bean.UserData" %>
+<%@ page import="java.util.List" %>
 <%--
   Created by IntelliJ IDEA.
   User: vladimirkr

@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.Map;
 
 /**
@@ -25,12 +26,21 @@ public class UserFormServlet extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         logger.info("Handle Form request");
         logger.info("Request parameters:");
+
+        if(req.getCharacterEncoding() == null) {
+            req.setCharacterEncoding("UTF-8");
+        }
+
         Map<String, String[]> parametersMap = req.getParameterMap();
         UserData userData = new UserData.Builder(parametersMap).build();
         logger.info(userData.toString());
+        try {
+            dbConnector.addUser(userData);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
         req.setAttribute("userData", userData);
         req.getRequestDispatcher("complete.jsp").forward(req, resp);
-        //resp.sendRedirect("complete.jsp");
     }
 
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {

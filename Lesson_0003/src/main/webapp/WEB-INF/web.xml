@@ -4,12 +4,24 @@
 
 <web-app>
   <display-name>Archetype Created Web Application</display-name>
+
+    <!--filter>
+        <filter-name>Charset Filter</filter-name>
+        <filter-class>CharsetFilter</filter-class>
+        <init-param>
+            <param-name>requestEncoding</param-name>
+            <param-value>UTF-8</param-value>
+        </init-param>
+    </filter-->
+
     <servlet>
         <servlet-name>UserFormServlet</servlet-name>
         <servlet-class>edu.tutorial.web.UserFormServlet</servlet-class>
     </servlet>
+
     <servlet-mapping>
         <servlet-name>UserFormServlet</servlet-name>
         <url-pattern>/UserFormServlet</url-pattern>
     </servlet-mapping>
+
 </web-app>
