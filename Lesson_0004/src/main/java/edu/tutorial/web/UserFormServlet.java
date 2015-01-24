@@ -57,11 +57,11 @@ public class UserFormServlet extends HttpServlet {
             statementMap.put("allSexes", Statement.getStatement("select * from sex"));
             statementMap.put("allProfessions", Statement.getStatement("select * from profession"));
 
-            ResultSet resultSet = statementMap.get("allUsers").execute();
-            while (resultSet.next()) {
-                logger.info(resultSet.getString("name"));
-                logger.info(resultSet.getString("pass"));
-            }
+            logResult(executeRequest(statementMap.get("allUsers")), "name", "pass");
+            logResult(executeRequest(statementMap.get("allLanguages")), "name");
+            logResult(executeRequest(statementMap.get("allSexes")), "name");
+            logResult(executeRequest(statementMap.get("allProfessions")), "name");
+
         } catch (InstantiationException e) {
             e.printStackTrace();
         } catch (IllegalAccessException e) {
@@ -71,6 +71,18 @@ public class UserFormServlet extends HttpServlet {
         } catch (SQLException e) {
             e.printStackTrace();
         }
+    }
+
+    private void logResult(ResultSet resultSet, String... args) throws SQLException {
+        while (resultSet.next()) {
+            for (String key:args) {
+                logger.info(resultSet.getString(key));
+            }
+        }
+    }
+
+    private ResultSet executeRequest(Statement statement) {
+        return statement.execute();
     }
 
     public void destroy() {
